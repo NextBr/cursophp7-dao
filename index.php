@@ -17,10 +17,18 @@
     // echo json_encode($search);
 
     // Carrega um usuario usando login e a senha
-    $Usuario = new Usuario();
-    $Usuario -> login("Ana", "210696");
-    echo $Usuario;
+    //$Usuario = new Usuario();
+   // $Usuario -> login("Ana", "210696");
+    //echo $Usuario;
 
 
+    $Aluno = new Usuario("Aluno_1", "@luno@");
+    //$Aluno -> setDeslogin("");
+    //$Aluno -> setDessenha("");
+
+    $Aluno -> insert();
+
+
+    echo $Aluno;
 
 ?>
