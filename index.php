@@ -28,11 +28,18 @@
 
     //$Aluno -> insert();
     //echo $Aluno;
-
+/*
     // Alterando Usuario
-
     $Sql = new Usuario();
     $Sql -> loadById(4);
     $Sql -> update("professor", "prof@1234");
     echo $Sql;
+*/
+
+    // Deletar usuario
+    $usuario = new Usuario();
+    $usuario -> loadById(1);
+    $usuario -> delete();
+    echo $usuario;
+
 ?>

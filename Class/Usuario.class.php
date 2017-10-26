@@ -91,10 +91,6 @@
             $this -> setDtcadastro(new DateTime($data['dtcadastro']));
         }
 
-
-
-
-
         public function insert(){
             $sql = new Sql();
             $results = $sql -> select("CALL sp_usuarios_insert(:login, :password)", array(
@@ -123,6 +119,18 @@
             ));
         }
 
+
+        public function delete(){
+            $sql = new Sql();
+            $sql -> query("DELETE FROM tb_usuarios WHERE idusuario = :id", array(
+                ':id' => $this -> getIdusuario()
+            ));
+
+            $this -> setIdusuario(0);
+            $this -> setDeslogin("");
+            $this -> setDessenha("");
+            $this -> setDtcadastro(new DateTime());
+        }
 
 
 
