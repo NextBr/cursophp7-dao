@@ -59,6 +59,41 @@
             }
         }
 
+        public static function getList(){
+            $sql = new Sql();
+            return $sql -> select("SELECT * FROM tb_usuarios ORDER BY deslogin;");
+        }
+
+
+        public static function search($Login){
+            $sql = new Sql();
+            return $sql -> select("SELECT * FROM tb_usuarios WHERE deslogin LIKE :search ORDER BY deslogin", array(
+                ':search' => "%". $Login ."%"
+            ));
+        }
+
+
+        public function login($Login, $Password){
+            $Sql = new Sql();
+            $results = $Sql -> select("SELECT * FROM tb_usuarios WHERE deslogin = :login AND dessenha = :password", array(
+                ":login" => $Login,
+                ":password" => $Password
+            ));
+
+            if(count($results) > 0){
+                $row = $results[0];
+
+                $this -> setIdusuario($row['idusuario']);
+                $this -> setDeslogin($row['deslogin']);
+                $this -> setDessenha($row['dessenha']);
+                $this -> setDtcadastro(new DateTime($row['dtcadastro']));
+            } else{
+                throw new Exception("Login e/ou senha incorretos !");
+            }
+        }
+
+
+
         public function __toString(){
             return json_encode(array(
                 "idusuario" => $this -> getIdusuario(),
