@@ -21,14 +21,18 @@
    // $Usuario -> login("Ana", "210696");
     //echo $Usuario;
 
-
-    $Aluno = new Usuario("Aluno_1", "@luno@");
+    // Inserindo um usuario 
+    //$Aluno = new Usuario("Aluno_1", "@luno@");
     //$Aluno -> setDeslogin("");
     //$Aluno -> setDessenha("");
 
-    $Aluno -> insert();
+    //$Aluno -> insert();
+    //echo $Aluno;
 
+    // Alterando Usuario
 
-    echo $Aluno;
-
+    $Sql = new Usuario();
+    $Sql -> loadById(4);
+    $Sql -> update("professor", "prof@1234");
+    echo $Sql;
 ?>

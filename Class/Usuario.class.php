@@ -51,7 +51,7 @@
             ));
 
             if(isset($results[0])){
-                $this -> setData($results[0]);
+               return json_encode($this -> setData($results[0]));
             }
         }
 
@@ -107,7 +107,26 @@
             }
         }
 
-        public function __construct($login = "", $password = ""){
+
+
+        public function update($Login, $Senha){
+
+            $this -> setDeslogin($Login);
+            $this -> setDessenha($Senha);
+
+
+            $sql = new Sql();
+            $sql -> query("UPDATE tb_usuarios SET deslogin = :login AND dessenha = :password WHERE idusuario = :id", array(
+                ":login" => $this -> getDeslogin(),
+                ":password" => $this -> getDessenha(),
+                ":id" => $this -> getIdusuario()
+            ));
+        }
+
+
+
+
+        public function __construct($login = "", $password = "" ){
             $this -> setDeslogin($login);
             $this -> setDessenha($password);
         }
